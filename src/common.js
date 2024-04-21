@@ -27,3 +27,14 @@ export const spinnerJobDetailsEl = document.querySelector(".spinner--job-details
 export const jobsAvilableEL= document.querySelector('.jobs-available');
 
 
+// Helper or Utilities Functions
+export const getData = async (completeURL) =>{
+    const response = await fetch(completeURL)
+    const data = await response.json()
+    
+    if(!response.ok){  
+        throw new Error(data.description); 
+    }
+
+    return data;
+};
