@@ -3,6 +3,13 @@
 export const BASE_API_URL='https://bytegrad.com/course-assets/js/2/api';
 export const DEFAULT_DISPLAY_TIME = 4000;
 
+export const state ={
+    searchJobItems: [],
+    currentPage: 1,
+};
+
+
+
 // selectors
 export const bookmarksBtnEl = document.querySelector('.bookmarks-btn');
 export const errorEl = document.querySelector('.error');

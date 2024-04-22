@@ -1,5 +1,6 @@
 import {
     BASE_API_URL,
+    state,
     jobListSearchEl,
     jobDetailsContentEl,
     getData
@@ -8,8 +9,13 @@ import randerSpinner from './Spinner.js'
 import renderJobDetails from './JobDetails.js';
 
 
-const renderJobList = (jobItems) =>{
-    jobItems.slice(0,7).forEach((jobItem)=>{                         
+const renderJobList = () =>{
+    // remove previous job items
+    jobListSearchEl.innerHTML='';
+
+
+    // using the state variable
+    state.searchJobItems.slice(state.currentPage *7 -7, state.currentPage * 7).forEach((jobItem)=>{                         
                                 
         const newJobItemHTML = `
                 <li class="job-item">

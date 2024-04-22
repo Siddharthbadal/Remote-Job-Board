@@ -1,5 +1,6 @@
 import {
     BASE_API_URL,
+    state,
     searchInputEl,
     searchFormEl,
     spinnerSearchEl,
@@ -46,7 +47,9 @@ const submitHandler = async (e)=>{
         // extract job items from data
             let { jobItems} = data;
             // console.log(jobItems)
-        
+
+            // update state
+            state.searchJobItems = jobItems;
             //  remove spinner
             randerSpinner('search')
 
@@ -56,7 +59,7 @@ const submitHandler = async (e)=>{
         jobsAvilableEL.textContent=`Total ${jobItems.length} jobs`;
         
         //  render job list in search job list
-        renderJobList(jobItems)
+        renderJobList(state.searchJobItems)
 
     }catch (error){
         randerSpinner('search')
