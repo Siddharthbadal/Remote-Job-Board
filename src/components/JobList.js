@@ -68,7 +68,7 @@ const clickHandler = async (event)=>{
     const id = jobItemEl.children[0].getAttribute(['href']);
 
     // add job id to url to create bookmark
-    history.pushState()
+    
 
 
     // fetch job item data
