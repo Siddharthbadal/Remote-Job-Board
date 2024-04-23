@@ -1,5 +1,6 @@
 import {
     BASE_API_URL,
+    RESULT_PER_PAGE,
     state,
     jobListSearchEl,
     jobDetailsContentEl,
@@ -15,7 +16,7 @@ const renderJobList = () =>{
 
 
     // using the state variable
-    state.searchJobItems.slice(state.currentPage *7 -7, state.currentPage * 7).forEach((jobItem)=>{                         
+    state.searchJobItems.slice(state.currentPage * RESULT_PER_PAGE - RESULT_PER_PAGE, state.currentPage * RESULT_PER_PAGE).forEach((jobItem)=>{                         
                                 
         const newJobItemHTML = `
                 <li class="job-item">
@@ -65,6 +66,10 @@ const clickHandler = async (event)=>{
 
     // get the id of clicked job item
     const id = jobItemEl.children[0].getAttribute(['href']);
+
+    // add job id to url to create bookmark
+    history.pushState()
+
 
     // fetch job item data
     try{

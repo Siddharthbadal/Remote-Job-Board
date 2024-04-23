@@ -7,11 +7,14 @@ import {
     jobListSearchEl,
     numberEl,
     jobsAvilableEL, 
-    getData
+    getData,
+    sortingBtnRecentEl,
+    sortingBtnRelevantEl
 } from '../common.js';
 import renderError from './Error.js';
 import randerSpinner from './Spinner.js'
 import renderJobList from './JobList.js';
+import renderPaginationButtons from './Pagination.js';
 
 
 const submitHandler = async (e)=>{
@@ -36,6 +39,10 @@ const submitHandler = async (e)=>{
     // remove previous entered search text
     jobListSearchEl.innerHTML=''
 
+    // reset sorting buttons 
+    sortingBtnRecentEl.classList.remove('sorting__button--active');
+    sortingBtnRelevantEl.classList.add('sorting__button--active');
+
     // render spinner 
     randerSpinner('search')
 
@@ -50,6 +57,12 @@ const submitHandler = async (e)=>{
 
             // update state
             state.searchJobItems = jobItems;
+            
+            // reset pagination buttons when search again in same session
+            state.currentPage = 1;
+            renderPaginationButtons();
+       
+
             //  remove spinner
             randerSpinner('search')
 
@@ -58,8 +71,12 @@ const submitHandler = async (e)=>{
         // insert  in page footer
         jobsAvilableEL.textContent=`Total ${jobItems.length} jobs`;
         
+       
+
         //  render job list in search job list
         renderJobList(state.searchJobItems)
+
+        
 
     }catch (error){
         randerSpinner('search')

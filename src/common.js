@@ -1,7 +1,8 @@
 // constatns
 
 export const BASE_API_URL='https://bytegrad.com/course-assets/js/2/api';
-export const DEFAULT_DISPLAY_TIME = 4000;
+export const DEFAULT_DISPLAY_TIME = 3000;
+export const RESULT_PER_PAGE = 7;
 
 export const state ={
     searchJobItems: [],

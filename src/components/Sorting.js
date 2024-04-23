@@ -6,6 +6,7 @@ import{
     getData
 } from '../common.js';
 import renderJobList from './JobList.js';
+import renderPaginationButtons from './Pagination.js';
 
 const clickHandler = event =>{
     
@@ -15,8 +16,11 @@ const clickHandler = event =>{
     // stop if no clicked button
     if (!clickedButtonEl) return;
 
-    // check if acton is to sort by relevance or recency
+    // if sorted; reset to page 1
+    state.currentPage = 1;
 
+
+    // check if acton is to sort by relevance or recency
     const recent = clickedButtonEl.className.includes('--recent') ? true : false;
 
     // make sorting buttons active and inactive
@@ -42,6 +46,10 @@ const clickHandler = event =>{
             return b.relevanceScore - a.relevanceScore
         });
     }
+
+    // render pagination
+    renderPaginationButtons();
+    
     // render job list
     renderJobList();
 
